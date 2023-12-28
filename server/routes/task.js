@@ -1,31 +1,20 @@
 import express from 'express';
-import { Task } from '../models/taskModel.js';
+import {
+    createTask,
+    getTask,
+    getTasks,
+} from '../controllers/taskController.js'
 
 const router = express.Router();
 
 // GET full todo list
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all tasks'})
-})
+router.get('/', getTasks);
 
 // GET single task
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET single task'})
-})
+router.get('/:id', getTask);
 
 // POST new task
-router.post('/', async (req, res) => {
-    const {title, day} = req.body;
-
-    try {
-        const task = await Task.create({title, day});
-        res.status(200).json(task)
-    } catch (error) {
-        res.status(400).json({error: error.message})
-    }
-
-    res.json({mssg: 'POST new task'})
-})
+router.post('/', createTask)
 
 // DELETE a task
 router.delete('/:id', (req, res) => {
