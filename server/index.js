@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import taskRoutes from './routes/task.js'
+import taskRoutes from './routes/task.js';
 
 dotenv.config();
 
@@ -18,8 +18,8 @@ const PORT = process.env.PORT;
 
 //routes
 app.use('/api/tasks', taskRoutes)
-
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// { useNewUrlParser: true, useUnifiedTopology: true }
+mongoose.connect(process.env.MONGO_URI)
     .then(() => app.listen(PORT, () => console.log('Server running on port', PORT)))
     .catch((error) => console.log(error.message));
 

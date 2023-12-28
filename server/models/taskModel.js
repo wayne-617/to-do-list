@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
+
 const taskSchema = new Schema({
     title: {
         type: String,
@@ -11,4 +12,6 @@ const taskSchema = new Schema({
     }
 }, { timestamps: true });
 
-module.exports = mongoose.mondel('Task', taskSchema);
+
+
+export const Task = mongoose.model('Task', taskSchema);
