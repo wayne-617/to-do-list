@@ -39,5 +39,37 @@ export const createTask = async (req, res) => {
 };
 
 // delete a task
+export const deleteTask = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'Task not found'});
+    }
+
+    const task = await Workout.findOneAndDelete({_id: id});
+
+    if (!task) {
+        return res.status(400).json({error: 'Task not found'});
+    }
+
+    res.status(200).json(workout);
+}
 
 // update a task
+export const updateTask = async (req, res) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'Task not found'});
+    }
+
+    const task = await Task.findOneAndUpdate({_id: id}, {
+        ...req.body
+    });
+
+    if (!task) {
+        return res.status(400).json({error: 'Task not found'});
+    }
+
+    res.status(200).json(task);
+}
