@@ -35,7 +35,7 @@ export const createTask = async (req, res) => {
         res.status(400).json({error: error.message})
     }
 
-    res.json({mssg: 'POST new task'})
+    // res.json({mssg: 'POST new task'})
 };
 
 // delete a task
@@ -46,13 +46,13 @@ export const deleteTask = async (req, res) => {
         return res.status(404).json({error: 'Task not found'});
     }
 
-    const task = await Workout.findOneAndDelete({_id: id});
+    const task = await Task.findOneAndDelete({_id: id});
 
     if (!task) {
         return res.status(400).json({error: 'Task not found'});
     }
 
-    res.status(200).json(workout);
+    res.status(200).json(task);
 }
 
 // update a task
