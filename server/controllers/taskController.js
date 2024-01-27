@@ -29,7 +29,7 @@ export const createTask = async (req, res) => {
     const {title, day} = req.body;
 
     try {
-        const task = await Task.create({title, day});
+        const task = await Task.create({name, day});
         res.status(200).json(task)
     } catch (error) {
         res.status(400).json({error: error.message})
